@@ -6,7 +6,7 @@ import getCategories from "@/actions/get-categories";
 import { DeleteButton, EditButton } from "@/components";
 
 export default async function HomePage() {
-	const categories = await getCategories();
+	// const categories = await getCategories();
 	return (
 		<div className="w-full p-4 flex gap-2">
 			<Sidebar />
@@ -37,7 +37,7 @@ export default async function HomePage() {
 									</th>
 								</tr>
 							</thead>
-							<tbody>
+							{/* <tbody>
 								{categories?.data?.map((item: TcategoriesProps) => (
 									<tr key={item.id}>
 										<td className="border border-gray-200 px-4 py-2  w-fit">
@@ -62,7 +62,7 @@ export default async function HomePage() {
 										</td>
 									</tr>
 								))}
-							</tbody>
+							</tbody> */}
 						</table>
 					</div>
 				</div>

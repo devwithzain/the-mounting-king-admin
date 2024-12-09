@@ -1,2 +1,3 @@
 export { default as eyesvg } from "./eyesvg.svg";
-export { default as placeholder } from "./placeholder.svg";
+export { default as fromImage } from './img.png';
+export { default as placeholder } from './placeholder.png';

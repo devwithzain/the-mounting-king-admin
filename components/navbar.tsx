@@ -1,3 +1,5 @@
+import UserMenu from "./user-menu";
+
 export default function Navbar() {
 	return (
 		<div className="py-6">
@@ -5,9 +7,7 @@ export default function Navbar() {
 				<h1 className="text-[24px]  font-semibold uppercase text-[#081226]">
 					Dashboard
 				</h1>
-				<button className="text-[14px]  font-semibold bg-[#081226] text-white py-2 px-4 rounded-lg">
-					LogOut
-				</button>
+				<UserMenu />
 			</div>
 			<hr className="bg-black text-black w-full mt-2" />
 		</div>

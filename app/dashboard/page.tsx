@@ -1,72 +1,32 @@
-import Link from "next/link";
+import { Sales } from "@/components/sales";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
-import { LuArrowLeftRight, LuPackageSearch } from "react-icons/lu";
-import { BiBookOpen } from "react-icons/bi";
+import { ServiceChart } from "@/components/service-chart";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-export default async function Dashboard() {
+export default function Dashboard() {
 	return (
-		<div className="w-full p-4 flex gap-2">
+		<SidebarProvider>
 			<Sidebar />
-			<div className="w-[82%] h-[97vh] ml-auto">
+			<SidebarInset>
 				<Navbar />
-				<div className="w-full grid grid-cols-3 gap-6">
-					<div className="w-full h-[200px] px-5 py-8 rounded-lg bg-[#3920ba] cursor-pointer flex flex-col justify-between">
-						<div className="w-full flex items-center justify-between">
-							<Link
-								className="text-[24px] font-medium text-white leading-tight tracking-tight"
-								href="/products">
-								Total Revenue
-							</Link>
-							<BiBookOpen
-								className="text-white"
-								size={30}
-							/>
+				<div className="flex flex-1 flex-col gap-4 p-4 pt-0 h-full justify-between">
+					<div className="grid auto-rows-min gap-4 md:grid-cols-3">
+						<div className="rounded-xl">
+							<Sales />
 						</div>
-						<Link
-							className="text-[24px] font-medium text-white leading-tight tracking-tight"
-							href="/products">
-							$100.00
-						</Link>
+						<div className="rounded-xl">
+							<Sales />
+						</div>
+						<div className="rounded-xl">
+							<Sales />
+						</div>
 					</div>
-					<div className="w-full h-[200px] px-5 py-8 rounded-lg bg-[#3920ba] cursor-pointer flex flex-col justify-between">
-						<div className="w-full flex items-center justify-between">
-							<Link
-								className="text-[24px] font-medium text-white leading-tight tracking-tight"
-								href="/category">
-								Products
-							</Link>
-							<LuPackageSearch
-								className="text-white"
-								size={30}
-							/>
-						</div>
-						<Link
-							className="text-[24px] font-medium text-white leading-tight tracking-tight"
-							href="/products">
-							122
-						</Link>
-					</div>
-					<div className="w-full h-[200px] px-5 py-8 rounded-lg bg-[#3920ba] cursor-pointer flex flex-col justify-between">
-						<div className="flex items-center justify-between">
-							<Link
-								className="text-[24px] font-medium text-white leading-tight tracking-tight"
-								href="/subcategory">
-								Orders
-							</Link>
-							<LuArrowLeftRight
-								className="text-white"
-								size={30}
-							/>
-						</div>
-						<Link
-							className="text-[24px] font-medium uppercase text-white leading-tight tracking-tight"
-							href="/products">
-							21
-						</Link>
+					<div className="rounded-xl h-full">
+						<ServiceChart />
 					</div>
 				</div>
-			</div>
-		</div>
+			</SidebarInset>
+		</SidebarProvider>
 	);
 }

@@ -30,6 +30,13 @@ export const profileFormSchema = z.object({
    }),
 });
 
+export const billboardFormSchema = z.object({
+   label: z.string().min(1, {
+      message: "Label is required",
+   }),
+});
+
 export type TloginFormData = z.infer<typeof loginFormSchema>;
 export type TprofileFormData = z.infer<typeof profileFormSchema>;
 export type TregisterFormData = z.infer<typeof registerFormSchema>;
+export type TbillboardFormData = z.infer<typeof billboardFormSchema>;

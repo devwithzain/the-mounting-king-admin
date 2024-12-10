@@ -1,5 +1,5 @@
 "use client";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 import {
 	Card,
@@ -15,18 +15,22 @@ import {
 	ChartTooltipContent,
 } from "@/components/ui/chart";
 const chartData = [
-	{ month: "January", desktop: 186 },
-	{ month: "February", desktop: 305 },
-	{ month: "March", desktop: 237 },
-	{ month: "April", desktop: 73 },
-	{ month: "May", desktop: 209 },
-	{ month: "June", desktop: 214 },
+	{ month: "January", desktop: 186, mobile: 80 },
+	{ month: "February", desktop: 305, mobile: 200 },
+	{ month: "March", desktop: 237, mobile: 120 },
+	{ month: "April", desktop: 73, mobile: 190 },
+	{ month: "May", desktop: 209, mobile: 130 },
+	{ month: "June", desktop: 214, mobile: 140 },
 ];
 
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
 		color: "hsl(var(--chart-1))",
+	},
+	mobile: {
+		label: "Mobile",
+		color: "hsl(var(--chart-2))",
 	},
 } satisfies ChartConfig;
 
@@ -35,31 +39,42 @@ export function Sales() {
 		<Card>
 			<CardHeader>
 				<CardTitle>Sales</CardTitle>
-				<CardDescription>January - December 2024</CardDescription>
+				<CardDescription>January - June 2024</CardDescription>
 			</CardHeader>
 			<CardContent>
 				<ChartContainer config={chartConfig}>
-					<BarChart
+					<LineChart
 						accessibilityLayer
-						data={chartData}>
+						data={chartData}
+						margin={{
+							left: 12,
+							right: 12,
+						}}>
 						<CartesianGrid vertical={false} />
 						<XAxis
 							dataKey="month"
 							tickLine={false}
-							tickMargin={10}
 							axisLine={false}
+							tickMargin={8}
 							tickFormatter={(value) => value.slice(0, 3)}
 						/>
 						<ChartTooltip
 							cursor={false}
 							content={<ChartTooltipContent hideLabel />}
 						/>
-						<Bar
+						<Line
 							dataKey="desktop"
-							fill="var(--color-desktop)"
-							radius={8}
+							type="natural"
+							stroke="var(--color-desktop)"
+							strokeWidth={2}
+							dot={{
+								fill: "var(--color-desktop)",
+							}}
+							activeDot={{
+								r: 6,
+							}}
 						/>
-					</BarChart>
+					</LineChart>
 				</ChartContainer>
 			</CardContent>
 		</Card>

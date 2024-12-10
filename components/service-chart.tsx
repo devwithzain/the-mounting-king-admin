@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 import {
 	Card,
@@ -140,7 +140,7 @@ export function ServiceChart() {
 		<Card>
 			<CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
 				<div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-					<CardTitle>Bar Chart - Interactive</CardTitle>
+					<CardTitle>Line Chart - Interactive</CardTitle>
 					<CardDescription>
 						Showing total visitors for the last 3 months
 					</CardDescription>
@@ -152,7 +152,7 @@ export function ServiceChart() {
 							<button
 								key={chart}
 								data-active={activeChart === chart}
-								className="relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+								className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
 								onClick={() => setActiveChart(chart)}>
 								<span className="text-xs text-muted-foreground">
 									{chartConfig[chart].label}
@@ -169,7 +169,7 @@ export function ServiceChart() {
 				<ChartContainer
 					config={chartConfig}
 					className="aspect-auto h-[250px] w-full">
-					<BarChart
+					<LineChart
 						accessibilityLayer
 						data={chartData}
 						margin={{
@@ -206,11 +206,14 @@ export function ServiceChart() {
 								/>
 							}
 						/>
-						<Bar
+						<Line
 							dataKey={activeChart}
-							fill={`var(--color-${activeChart})`}
+							type="monotone"
+							stroke={`var(--color-${activeChart})`}
+							strokeWidth={2}
+							dot={false}
 						/>
-					</BarChart>
+					</LineChart>
 				</ChartContainer>
 			</CardContent>
 		</Card>

@@ -1,14 +1,13 @@
 import { format } from "date-fns";
 import prismadb from "@/lib/prisma";
-import { TServicesColumnProps } from "@/types";
+import { TServicesHeroColumnProps } from "@/types";
 import ServiceClient from "./components/client";
 
 export default async function ServiceSectionPage() {
-	const services = await prismadb.services.findMany();
-	const formatedService: TServicesColumnProps[] = services.map((service) => ({
+	const data = await prismadb.service_hero.findMany();
+	const formatedService: TServicesHeroColumnProps[] = data.map((service) => ({
 		id: service.id,
 		title: service.title,
-		description: service.description,
 		createdAt: format(service.created_at ?? new Date(), "MMMM do, yyyy"),
 	}));
 	return (

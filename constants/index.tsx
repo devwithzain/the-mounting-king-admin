@@ -34,7 +34,6 @@ export const sideBarItem = {
 			title: "Home Page",
 			url: "/dashboard/home",
 			icon: SquareTerminal,
-			isActive: true,
 			items: [
 				{
 					title: "Hero Section",
@@ -88,15 +87,15 @@ export const sideBarItem = {
 			items: [
 				{
 					title: "Hero Section",
-					url: "/dashboard/home/hero-section",
+					url: "/dashboard/services/hero-section",
 				},
 				{
 					title: "Advantage Section",
-					url: "/dashboard/home/advantage-section",
+					url: "/dashboard/services/advantage-section",
 				},
 				{
 					title: "Service Section",
-					url: "/dashboard/home/service-section",
+					url: "/dashboard/services/service-section",
 				},
 			],
 		},

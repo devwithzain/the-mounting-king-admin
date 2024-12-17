@@ -36,7 +36,61 @@ export const billboardFormSchema = z.object({
    }),
 });
 
+export const servicesFormSchema = z.object({
+   title: z.string().min(1, {
+      message: "Title is required",
+   }),
+   description: z.string().min(1, {
+      message: "Description is required",
+   }),
+});
+
+export const servicesHeroFormSchema = z.object({
+   title: z.string().min(1, {
+      message: "Title is required",
+   }),
+});
+
+export const servicesAdvantageFormSchema = z.object({
+   title: z.string().min(1, {
+      message: "Title is required",
+   }),
+   subTitle: z.string().min(1, {
+      message: "Sub Title is required",
+   }),
+   serviceTitle1: z.string().min(1, {
+      message: "Service Title 1 is required",
+   }),
+   serviceTitle2: z.string().min(1, {
+      message: "Service Title 2 is required",
+   }),
+   serviceTitle3: z.string().min(1, {
+      message: "Service Title 3 is required",
+   }),
+   serviceDescription1: z.string().min(1, {
+      message: "Service Description 1 is required",
+   }),
+   serviceDescription2: z.string().min(1, {
+      message: "Service Description 2 is required",
+   }),
+   serviceDescription3: z.string().min(1, {
+      message: "Service Description 3 is required",
+   }),
+   serviceImage1: z.string().min(1, {
+      message: "Service Image 1 is required",
+   }),
+   // serviceImage2: z.string().min(1, {
+   //    message: "Service Image 2 is required",
+   // }),
+   // serviceImage3: z.string().min(1, {
+   //    message: "Service Image 3 is required",
+   // }),
+});
+
 export type TloginFormData = z.infer<typeof loginFormSchema>;
 export type TprofileFormData = z.infer<typeof profileFormSchema>;
+export type TserviceFormData = z.infer<typeof servicesFormSchema>;
 export type TregisterFormData = z.infer<typeof registerFormSchema>;
 export type TbillboardFormData = z.infer<typeof billboardFormSchema>;
+export type TserviceHeroFormData = z.infer<typeof servicesHeroFormSchema>;
+export type TserviceAdvantageFormData = z.infer<typeof servicesAdvantageFormSchema>;

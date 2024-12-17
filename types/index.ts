@@ -34,6 +34,33 @@ export type TBillboardColumnProps = {
    createdAt: string;
 };
 
+export type TadvantageColumnProps = {
+   id: bigint;
+   title: string;
+   subTitle: string;
+   serviceTitle1: string;
+   serviceTitle2: string;
+   serviceTitle3: string;
+   serviceDescription1: string;
+   serviceDescription2: string;
+   serviceDescription3: string;
+   serviceImage1: string;
+   serviceImage2: string;
+   serviceImage3: string;
+};
+export type TServicesColumnProps = {
+   id: bigint;
+   title: string;
+   description: string;
+   createdAt: string;
+};
+
+export type TServicesHeroColumnProps = {
+   id: bigint;
+   title: string;
+   createdAt: string;
+};
+
 export type TmodallProps = {
    title: string;
    description: string;
@@ -48,3 +75,4 @@ export type TuseAlerteModalProps = {
    onClose: () => void;
    onConfirm: () => void;
 };
+

@@ -51,6 +51,34 @@ export const servicesHeroFormSchema = z.object({
    }),
 });
 
+export const requestHeroFormSchema = z.object({
+   title: z.string().min(1, {
+      message: "Title is required",
+   }),
+});
+
+export const requestServicesFormSchema = z.object({
+   service_title: z.string().min(1, {
+      message: "Title is required",
+   }),
+   service_description: z.string().min(1, {
+      message: "Description is required",
+   }),
+   steps: z.array(
+      z.object({
+         step_title: z.string().min(1, { message: "Step title is required" }),
+         step_description: z.string().min(1, { message: "Step description is required" }),
+         options: z.array(
+            z.object({
+               size: z.string().min(1, { message: "Size is required" }),
+               time: z.number({ message: "Time is required" }),
+               price: z.number({ message: "Price is required" }),
+            })
+         ),
+      })
+   ),
+});
+
 export const servicesAdvantageFormSchema = z.object({
    title: z.string().min(1, {
       message: "Title is required",
@@ -79,12 +107,12 @@ export const servicesAdvantageFormSchema = z.object({
    serviceImage1: z.string().min(1, {
       message: "Service Image 1 is required",
    }),
-   // serviceImage2: z.string().min(1, {
-   //    message: "Service Image 2 is required",
-   // }),
-   // serviceImage3: z.string().min(1, {
-   //    message: "Service Image 3 is required",
-   // }),
+   serviceImage2: z.string().min(1, {
+      message: "Service Image 2 is required",
+   }),
+   serviceImage3: z.string().min(1, {
+      message: "Service Image 3 is required",
+   }),
 });
 
 export type TloginFormData = z.infer<typeof loginFormSchema>;
@@ -92,5 +120,7 @@ export type TprofileFormData = z.infer<typeof profileFormSchema>;
 export type TserviceFormData = z.infer<typeof servicesFormSchema>;
 export type TregisterFormData = z.infer<typeof registerFormSchema>;
 export type TbillboardFormData = z.infer<typeof billboardFormSchema>;
+export type TrequestHeroFormData = z.infer<typeof requestHeroFormSchema>;
 export type TserviceHeroFormData = z.infer<typeof servicesHeroFormSchema>;
 export type TserviceAdvantageFormData = z.infer<typeof servicesAdvantageFormSchema>;
+export type TrequestServiceFormData = z.infer<typeof requestServicesFormSchema>;

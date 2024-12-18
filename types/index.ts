@@ -55,7 +55,28 @@ export type TServicesColumnProps = {
    createdAt: string;
 };
 
+export type TRequestServicesColumnProps = {
+   id: bigint;
+   service_title: string;
+   service_description: string;
+   steps: {
+      step_title: string;
+      step_description: string;
+      options: {
+         size: string;
+         time: number;
+         price: number;
+      }[];
+   }[];
+};
+
 export type TServicesHeroColumnProps = {
+   id: bigint;
+   title: string;
+   createdAt: string;
+};
+
+export type TRequestHeroColumnProps = {
    id: bigint;
    title: string;
    createdAt: string;

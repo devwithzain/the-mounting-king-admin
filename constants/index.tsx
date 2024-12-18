@@ -143,8 +143,8 @@ export const sideBarItem = {
 					url: "/dashboard/request-a-demo/hero-section",
 				},
 				{
-					title: "Form One",
-					url: "/dashboard/request-a-demo/form-one",
+					title: "Services Section",
+					url: "/dashboard/request-a-demo/service-section",
 				},
 			],
 		},

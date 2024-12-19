@@ -89,6 +89,15 @@ body {
 	}
 }
 
+.bg-sidebar {
+	background-color: #201f41;
+	color: white;
+}
+
+.text-sidebar-foreground {
+	color: #fff;
+}
+
 @layer base {
 	* {
 		@apply border-border;

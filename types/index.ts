@@ -64,8 +64,8 @@ export type TRequestServicesColumnProps = {
       step_description: string;
       options: {
          size: string;
-         time: number;
-         price: number;
+         time: any;
+         price: any;
       }[];
    }[];
 };

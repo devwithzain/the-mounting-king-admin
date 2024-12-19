@@ -71,8 +71,8 @@ export const requestServicesFormSchema = z.object({
          options: z.array(
             z.object({
                size: z.string().min(1, { message: "Size is required" }),
-               time: z.number({ message: "Time is required" }),
-               price: z.number({ message: "Price is required" }),
+               time: z.any({ message: "Time is required" }),
+               price: z.any({ message: "Price is required" }),
             })
          ),
       })

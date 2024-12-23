@@ -77,7 +77,7 @@ export default function LoginForm() {
 										type="email"
 										{...register("email")}
 										placeholder="Email"
-										className={`bg-[#3A364D] text-white placeholder:text-[#6D6980] rounded-lg p-4 focus:border-[#F59805] focus:border-[1px] focus:outline-none focus:ring-1 outline-none ${
+										className={`bg-[#201F41] text-white placeholder:text-[#6D6980] rounded-lg p-4 focus:border-[#F59805] focus:border-[1px] focus:outline-none focus:ring-1 outline-none ${
 											errors.email && "border-red-500 border-[1px]"
 										}`}
 									/>
@@ -92,7 +92,7 @@ export default function LoginForm() {
 										type="password"
 										{...register("password")}
 										placeholder="Enter your password"
-										className={`bg-[#3A364D] text-white placeholder:text-[#6D6980] rounded-lg p-4 focus:border-[#F59805] focus:border-[1px] focus:outline-none focus:ring-1 outline-none ${
+										className={`bg-[#201F41] text-white placeholder:text-[#6D6980] rounded-lg p-4 focus:border-[#F59805] focus:border-[1px] focus:outline-none focus:ring-1 outline-none ${
 											errors.password && "border-red-500 border-[1px]"
 										}`}
 									/>

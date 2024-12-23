@@ -4,7 +4,7 @@ import UpdateForm from "../_components/update-form";
 export default async function EditProduct({
 	params,
 }: {
-	params: { id: string };
+	params: Promise<{ id: string }>;
 }) {
 	const { id } = await params;
 	const product = await getProduct(id);

@@ -4,9 +4,9 @@ import CellAction from "./cell-action";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
-import { TRequestServicesColumnProps } from "@/types";
+import { TRequestBookingColumnProps } from "@/types";
 
-export const columns: ColumnDef<TRequestServicesColumnProps>[] = [
+export const columns: ColumnDef<TRequestBookingColumnProps>[] = [
 	{
 		accessorKey: "title",
 		header: ({ column }) => {

@@ -70,7 +70,31 @@ export type TRequestServicesColumnProps = {
    }[];
 };
 
+export type TproductsColumnProps = {
+   id: bigint;
+   title: string;
+   price: string;
+   color: string;
+   size: string;
+   category: string;
+   shortDescription: string;
+   description: string;
+   images: string[];
+};
+
+export type TRequestBookingColumnProps = {
+   id: bigint;
+   title: string;
+   description: string;
+};
+
 export type TServicesHeroColumnProps = {
+   id: bigint;
+   title: string;
+   createdAt: string;
+};
+
+export type TproductHeroColumnProps = {
    id: bigint;
    title: string;
    createdAt: string;

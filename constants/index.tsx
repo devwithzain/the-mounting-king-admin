@@ -1,9 +1,13 @@
 import {
 	AudioWaveform,
+	BookOpenCheck,
 	Command,
 	GalleryVerticalEnd,
-	Settings2,
-	SquareTerminal,
+	House,
+	LibraryBig,
+	SendToBack,
+	Server,
+	SquareChartGantt,
 } from "lucide-react";
 
 export const sideBarItem = {
@@ -33,7 +37,7 @@ export const sideBarItem = {
 		{
 			title: "Home Page",
 			url: "/dashboard/home",
-			icon: SquareTerminal,
+			icon: House,
 			items: [
 				{
 					title: "Hero Section",
@@ -64,7 +68,7 @@ export const sideBarItem = {
 		{
 			title: "About Page",
 			url: "/dashboard/about",
-			icon: SquareTerminal,
+			icon: LibraryBig,
 			items: [
 				{
 					title: "Hero Section",
@@ -83,7 +87,7 @@ export const sideBarItem = {
 		{
 			title: "Service Page",
 			url: "/dashboard/service",
-			icon: SquareTerminal,
+			icon: Server,
 			items: [
 				{
 					title: "Hero Section",
@@ -100,43 +104,24 @@ export const sideBarItem = {
 			],
 		},
 		{
-			title: "Service Detail Page",
-			url: "/dashboard/service-detail",
-			icon: SquareTerminal,
-			items: [
-				{
-					title: "Hero Section",
-					url: "/dashboard/service-detail/hero-section",
-				},
-				{
-					title: "Service Section",
-					url: "/dashboard/service-detail/about-section",
-				},
-				{
-					title: "Advantage Section",
-					url: "/dashboard/service-detail/advantage-section",
-				},
-			],
-		},
-		{
 			title: "Products Page",
 			url: "/dashboard/products",
-			icon: SquareTerminal,
+			icon: SquareChartGantt,
 			items: [
 				{
 					title: "Hero Section",
-					url: "/dashboard/home/hero-section",
+					url: "/dashboard/products/hero-section",
 				},
 				{
 					title: "Products Section",
-					url: "/dashboard/home/advantage-section",
+					url: "/dashboard/products/products-section",
 				},
 			],
 		},
 		{
 			title: "Request A Demo Page",
 			url: "/dashboard/request-a-demo",
-			icon: SquareTerminal,
+			icon: BookOpenCheck,
 			items: [
 				{
 					title: "Hero Section",
@@ -146,12 +131,16 @@ export const sideBarItem = {
 					title: "Services Section",
 					url: "/dashboard/request-a-demo/service-section",
 				},
+				{
+					title: "Booking Section",
+					url: "/dashboard/request-a-demo/booking-section",
+				},
 			],
 		},
 		{
 			title: "Orders",
 			url: "/dashboard/orders",
-			icon: Settings2,
+			icon: SendToBack,
 		},
 	],
 };

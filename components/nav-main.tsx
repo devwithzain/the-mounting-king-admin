@@ -38,7 +38,9 @@ export function NavMain({
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>Platform</SidebarGroupLabel>
+			<SidebarGroupLabel className="text-white text-lg font-medium leading-tight pb-4">
+				Navigation Menu
+			</SidebarGroupLabel>
 			<SidebarMenu>
 				{items.map((item) => {
 					const isActive =

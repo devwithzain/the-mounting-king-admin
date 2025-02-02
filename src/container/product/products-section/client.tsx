@@ -22,7 +22,7 @@ export default function ProductClient({
 				/>
 				<Button
 					className="flex items-center gap-x-2"
-					onClick={() => router(`/dashboard/products/products-section/new`)}>
+					onClick={() => router(`/dashboard/products/new`)}>
 					<Plus className="w-4 h-4" />
 					Add new
 				</Button>

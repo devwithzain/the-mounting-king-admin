@@ -6,8 +6,12 @@ import { DataTable } from "@/components/ui/data-table";
 import { useEffect, useState } from "react";
 import getProducts from "@/actions/get-products";
 import { columns } from "@/container/product/products-section/columns";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export default function ServicesPage() {
+	const router = useNavigate();
 	const [products, setProducts] = useState<TproductsColumnProps[]>([]);
 
 	useEffect(() => {
@@ -36,16 +40,18 @@ export default function ServicesPage() {
 		<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
 			<div className="flex items-center justify-between">
 				<Heading
-					title={`Products Page`}
-					description="Manage Products Page content for your website."
+					title={`Products (${formatedProduct.length})`}
+					description="Manage Products for your product page."
 				/>
+				<Button
+					className="flex items-center gap-x-2"
+					onClick={() => router(`/dashboard/products/new`)}>
+					<Plus className="w-4 h-4" />
+					Add new
+				</Button>
 			</div>
 			<Separator />
 			<div className="flex gap-4 flex-col">
-				<Heading
-					title={`Product Section Content`}
-					description="Manage Product section content for your products page."
-				/>
 				<DataTable
 					columns={columns}
 					data={formatedProduct}

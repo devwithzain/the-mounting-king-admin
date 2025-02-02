@@ -34,7 +34,7 @@ export function NavMain({
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel className="text-white text-lg font-medium leading-tight pb-4">
+			<SidebarGroupLabel className="text-lg font-medium leading-tight pb-4">
 				Navigation Menu
 			</SidebarGroupLabel>
 			<SidebarMenu>
@@ -54,7 +54,9 @@ export function NavMain({
 									<SidebarMenuButton tooltip={item.title}>
 										{item.icon && <item.icon />}
 										<Link to={item.url}>{item.title}</Link>
-										<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+										{item.items && (
+											<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+										)}
 									</SidebarMenuButton>
 								</CollapsibleTrigger>
 								<CollapsibleContent>

@@ -122,3 +122,8 @@ export type TuseAlerteModalProps = {
    onConfirm: () => void;
 };
 
+export type TuserProps = {
+   name: string;
+   email: string;
+};
+

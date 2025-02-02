@@ -3,7 +3,7 @@ import Layout from "./components/layout";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Product from "./pages/dashboard/products/Product";
-import ProductSection from "./pages/dashboard/products/products-section/ProductsSection";
+import ProductForm from "./pages/dashboard/products/ProductForm";
 
 export default function App() {
 	return (
@@ -25,12 +25,12 @@ export default function App() {
 					element={<Product />}
 				/>
 				<Route
-					path="/dashboard/products/products-section"
-					element={<ProductSection />}
+					path="/dashboard/products/new"
+					element={<ProductForm />}
 				/>
 				<Route
-					path="/dashboard/products/products-section/new"
-					element={<ProductSection />}
+					path="/dashboard/products/:id"
+					element={<ProductForm />}
 				/>
 			</Route>
 		</Routes>

@@ -5,12 +5,26 @@ import {
 	SidebarHeader,
 	SidebarRail,
 } from "@/components/ui/sidebar";
+import { TuserProps } from "@/types";
 import { sideBarItem } from "@/constants";
-import { NavMain } from "@/components/nav-main";
+import { getToken } from "@/lib/get-token";
+import { useEffect, useState } from "react";
 import { NavUser } from "@/components/nav-user";
+import { NavMain } from "@/components/nav-main";
+import { getUserData } from "@/actions/get-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+	const token = getToken();
+	const [user, setUser] = useState<TuserProps>();
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			const userData = await getUserData(token);
+			setUser(userData);
+		};
+		fetchUserData();
+	});
 	return (
 		<Sidebar
 			collapsible="icon"
@@ -22,7 +36,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavMain items={sideBarItem.navMain} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={sideBarItem.user} />
+				<NavUser user={user ?? { name: "", email: "" }} />
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>

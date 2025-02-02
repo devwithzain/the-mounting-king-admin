@@ -21,9 +21,7 @@ export default function CellAction({ data }: { data: TproductsColumnProps }) {
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(
-				`https://themountingking.com/backend/api/product/${data.id}`,
-			);
+			await axios.delete(`http://127.0.0.1:8000/api/product/${data.id}`);
 			toast.success("Content deleted.");
 		} catch (error) {
 			console.error(error);
@@ -53,9 +51,7 @@ export default function CellAction({ data }: { data: TproductsColumnProps }) {
 					<DropdownMenuLabel>Actions</DropdownMenuLabel>
 					<DropdownMenuItem
 						className="flex items-center gap-x-2"
-						onClick={() =>
-							router(`/dashboard/products/products-section/${data.id}`)
-						}>
+						onClick={() => router(`/dashboard/products/${data.id}`)}>
 						<Edit className="w-4 h-4" />
 						Edit
 					</DropdownMenuItem>

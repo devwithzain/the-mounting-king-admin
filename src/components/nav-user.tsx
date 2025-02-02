@@ -16,6 +16,7 @@ import {
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { placeholder } from "@/assets";
+import { useNavigate } from "react-router-dom";
 import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -27,9 +28,11 @@ export function NavUser({
 		email: string;
 	};
 }) {
+	const router = useNavigate();
 	const logOut = () => {
 		Cookies.remove("authToken");
 		toast.success("Logged out");
+		router(0);
 	};
 	const { isMobile } = useSidebar();
 

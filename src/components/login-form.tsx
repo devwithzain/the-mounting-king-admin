@@ -34,7 +34,7 @@ export default function LoginForm() {
 					toast.success(response.data.success);
 					const { access_token } = response.data;
 					Cookies.set("authToken", access_token, { expires: 1 });
-					router("/dashboard");
+					router(0);
 				}
 			})
 			.catch((err) => {

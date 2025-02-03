@@ -5,8 +5,8 @@ import {
 	GalleryVerticalEnd,
 	House,
 	SendToBack,
-	Server,
 	SquareChartGantt,
+	Cog,
 } from "lucide-react";
 
 export const sideBarItem = {
@@ -41,7 +41,7 @@ export const sideBarItem = {
 		{
 			title: "Services",
 			url: "/dashboard/services",
-			icon: Server,
+			icon: Cog,
 		},
 		{
 			title: "Products",

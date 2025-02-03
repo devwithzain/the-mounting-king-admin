@@ -154,15 +154,23 @@ export const productsColumnSchema = z.object({
    images: z.any(z.any()),
 });
 
+export const servicesColumnSchema = z.object({
+   title: z.string(),
+   short_description: z.string(),
+   description: z.string(),
+   image: z.any(),
+});
+
 export type TloginFormData = z.infer<typeof loginFormSchema>;
 export type TprofileFormData = z.infer<typeof profileFormSchema>;
 export type TserviceFormData = z.infer<typeof servicesFormSchema>;
 export type TregisterFormData = z.infer<typeof registerFormSchema>;
 export type TbillboardFormData = z.infer<typeof billboardFormSchema>;
+export type TproductFormData = z.infer<typeof productHeroFormSchema>;
+export type TservicesColumnProps = z.infer<typeof servicesColumnSchema>;
 export type TproductsColumnProps = z.infer<typeof productsColumnSchema>;
 export type TrequestHeroFormData = z.infer<typeof requestHeroFormSchema>;
 export type TserviceHeroFormData = z.infer<typeof servicesHeroFormSchema>;
-export type TserviceAdvantageFormData = z.infer<typeof servicesAdvantageFormSchema>;
-export type TrequestServiceFormData = z.infer<typeof requestServicesFormSchema>;
 export type TrequestBookingFormData = z.infer<typeof requestBookingFormSchema>;
-export type TproductFormData = z.infer<typeof productHeroFormSchema>;
+export type TrequestServiceFormData = z.infer<typeof requestServicesFormSchema>;
+export type TserviceAdvantageFormData = z.infer<typeof servicesAdvantageFormSchema>;

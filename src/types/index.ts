@@ -64,8 +64,8 @@ export type TRequestServicesColumnProps = {
       step_description: string;
       options: {
          size: string;
-         time: any;
-         price: any;
+         time: string;
+         price: string;
       }[];
    }[];
 };
@@ -76,11 +76,20 @@ export type TproductsColumnProps = {
    price: string;
    color: string;
    size: string;
-   created_at: string;
-   category: string;
-   shortDescription: string;
    description: string;
+   shortDescription: string;
    images: string[];
+   created_at: string;
+};
+
+
+export type TservicesColumnProps = {
+   id: bigint;
+   title: string;
+   short_description: string;
+   description: string;
+   image: string;
+   created_at: string;
 };
 
 export type TRequestBookingColumnProps = {

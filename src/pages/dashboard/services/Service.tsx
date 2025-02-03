@@ -1,40 +1,37 @@
 import { format } from "date-fns";
-import { Plus } from "lucide-react";
 import Heading from "@/components/heading";
-import { useEffect, useState } from "react";
-import { TproductsColumnProps } from "@/types";
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import getProducts from "@/actions/get-products";
-import { columns } from "@/container/product/columns";
+import { TservicesColumnProps } from "@/types";
 import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import getServices from "@/actions/get-services";
+import { columns } from "@/container/services/columns";
 
-export default function ProductPage() {
+export default function ServicePage() {
 	const router = useNavigate();
-	const [products, setProducts] = useState<TproductsColumnProps[]>([]);
+	const [services, setServices] = useState<TservicesColumnProps[]>([]);
 
 	useEffect(() => {
 		const fetchServices = async () => {
 			try {
-				const response = await getProducts();
-				setProducts(response.data);
+				const response = await getServices();
+				setServices(response.data);
 			} catch (err) {
-				console.error("Error fetching products:", err);
+				console.error("Error fetching services:", err);
 			}
 		};
 		fetchServices();
 	}, []);
 
-	const formatedProduct = products.map((service) => ({
+	const formatedServices = services.map((service) => ({
 		id: service.id,
 		title: service.title,
-		price: service.price,
-		color: service.color,
-		size: service.size,
 		description: service.description,
-		shortDescription: service.shortDescription,
-		images: service.images,
+		short_description: service.short_description,
+		image: service.image,
 		created_at: format(service.created_at ?? new Date(), "MMMM do, yyyy"),
 	}));
 
@@ -42,12 +39,12 @@ export default function ProductPage() {
 		<div className="flex flex-1 flex-col gap-4 p-4 pt-0">
 			<div className="flex items-center justify-between">
 				<Heading
-					title={`Products (${formatedProduct.length})`}
-					description="Manage Products for your product page."
+					title={`Services (${formatedServices.length})`}
+					description="Manage Services for your product page."
 				/>
 				<Button
 					className="flex items-center gap-x-2"
-					onClick={() => router(`/dashboard/products/new`)}>
+					onClick={() => router(`/dashboard/services/new`)}>
 					<Plus className="w-4 h-4" />
 					Add new
 				</Button>
@@ -56,7 +53,7 @@ export default function ProductPage() {
 			<div className="flex gap-4 flex-col">
 				<DataTable
 					columns={columns}
-					data={formatedProduct}
+					data={formatedServices}
 					searchKey="title"
 				/>
 			</div>

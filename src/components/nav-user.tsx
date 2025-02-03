@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { placeholder } from "@/assets";
 import { useNavigate } from "react-router-dom";
-import { BadgeCheck, ChevronsUpDown, LogOut } from "lucide-react";
+import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function NavUser({
@@ -49,7 +49,7 @@ export function NavUser({
 									src={placeholder}
 									alt={user.name}
 								/>
-								<AvatarFallback className="rounded-lg">CN</AvatarFallback>
+								<AvatarFallback className="rounded-lg">AD</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-semibold">{user.name}</span>
@@ -70,7 +70,7 @@ export function NavUser({
 										src={placeholder}
 										alt={user.name}
 									/>
-									<AvatarFallback className="rounded-lg">CN</AvatarFallback>
+									<AvatarFallback className="rounded-lg">AD</AvatarFallback>
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate font-semibold">{user.name}</span>
@@ -82,7 +82,7 @@ export function NavUser({
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
-								<BadgeCheck />
+								<Settings />
 								Account
 							</DropdownMenuItem>
 						</DropdownMenuGroup>

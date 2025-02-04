@@ -52,20 +52,6 @@ export const sideBarItem = {
 			title: "Request A Demo Page",
 			url: "/dashboard/request-a-demo",
 			icon: BookOpenCheck,
-			items: [
-				{
-					title: "Hero Section",
-					url: "/dashboard/request-a-demo/hero-section",
-				},
-				{
-					title: "Services Section",
-					url: "/dashboard/request-a-demo/service-section",
-				},
-				{
-					title: "Booking Section",
-					url: "/dashboard/request-a-demo/booking-section",
-				},
-			],
 		},
 		{
 			title: "Orders",

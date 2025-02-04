@@ -86,21 +86,17 @@ export const requestBookingFormSchema = z.object({
 });
 
 export const requestServicesFormSchema = z.object({
-   service_title: z.string().min(1, {
-      message: "Title is required",
-   }),
-   service_description: z.string().min(1, {
-      message: "Description is required",
-   }),
+   service_title: z.string().nonempty("Title is required"),
+   service_description: z.string().nonempty("Description is required"),
    steps: z.array(
       z.object({
-         step_title: z.string().min(1, { message: "Step title is required" }),
-         step_description: z.string().min(1, { message: "Step description is required" }),
+         step_title: z.string().nonempty("Step title is required"),
+         step_description: z.string().nonempty("Step description is required"),
          options: z.array(
             z.object({
-               size: z.string().min(1, { message: "Size is required" }),
-               time: z.any({ message: "Time is required" }),
-               price: z.any({ message: "Price is required" }),
+               size: z.string().nonempty("Size is required"),
+               time: z.number().int().nonnegative("Time must be a non-negative integer"),
+               price: z.number().nonnegative("Price must be a non-negative number"),
             })
          ),
       })
@@ -158,7 +154,7 @@ export const servicesColumnSchema = z.object({
    title: z.string(),
    short_description: z.string(),
    description: z.string(),
-   image: z.any(),
+   image: z.any().nullable(),
 });
 
 export type TloginFormData = z.infer<typeof loginFormSchema>;

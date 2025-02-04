@@ -165,7 +165,7 @@ export default function ProductForm() {
 
 		try {
 			if (initialData) {
-				await axios.put(`http://127.0.0.1:8000/api/product/${id}`, formData, {
+				await axios.post(`http://127.0.0.1:8000/api/product/${id}`, formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				});
 			} else {

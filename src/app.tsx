@@ -9,6 +9,8 @@ import { AuthProvider } from "./providers/auth-provider";
 import ProtectedRoute from "./components/protected-route";
 import ProductForm from "./pages/dashboard/products/ProductForm";
 import ServiceForm from "./pages/dashboard/services/ServiceForm";
+import RequestADemoPage from "./pages/dashboard/request-a-demo/RequestADemoPage";
+import RequestADemoPageForm from "./pages/dashboard/request-a-demo/RequestADemoPageForm";
 
 export default function App() {
 	return (
@@ -27,7 +29,7 @@ export default function App() {
 						path="/dashboard"
 						element={<Layout />}>
 						<Route
-							path="/dashboard"
+							index
 							element={<Dashboard />}
 						/>
 						{/* Products Routes */}
@@ -55,6 +57,19 @@ export default function App() {
 						<Route
 							path="services/:id"
 							element={<ServiceForm />}
+						/>
+						{/* Request A Demo Routes */}
+						<Route
+							path="request-a-demo"
+							element={<RequestADemoPage />}
+						/>
+						<Route
+							path="request-a-demo/new"
+							element={<RequestADemoPageForm />}
+						/>
+						<Route
+							path="request-a-demo/:id"
+							element={<RequestADemoPageForm />}
 						/>
 					</Route>
 				</Route>

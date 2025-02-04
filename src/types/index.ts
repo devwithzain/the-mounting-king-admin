@@ -59,13 +59,14 @@ export type TRequestServicesColumnProps = {
    id: bigint;
    service_title: string;
    service_description: string;
+   created_at: string;
    steps: {
       step_title: string;
       step_description: string;
       options: {
          size: string;
-         time: string;
-         price: string;
+         time: number;
+         price: number;
       }[];
    }[];
 };
@@ -135,4 +136,3 @@ export type TuserProps = {
    name: string;
    email: string;
 };
-

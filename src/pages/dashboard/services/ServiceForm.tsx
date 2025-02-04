@@ -65,15 +65,15 @@ export default function ServiceForm() {
 	});
 
 	useEffect(() => {
-		if (services) {
+		if (formatedService) {
 			form.reset({
-				title: services.title,
-				description: services.description,
-				short_description: services.short_description,
-				image: services.image || "",
+				title: formatedService.title,
+				description: formatedService.description,
+				short_description: formatedService.short_description,
+				image: formatedService.image || "",
 			});
 		}
-	}, [services, form.reset]);
+	}, [formatedService, form.reset]);
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setImageError("");
@@ -142,7 +142,7 @@ export default function ServiceForm() {
 
 		try {
 			if (initialData) {
-				await axios.put(`http://127.0.0.1:8000/api/service/${id}`, formData, {
+				await axios.post(`http://127.0.0.1:8000/api/service/${id}`, formData, {
 					headers: { "Content-Type": "multipart/form-data" },
 				});
 			} else {

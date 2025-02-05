@@ -21,8 +21,11 @@ export default function CellAction({ data }: { data: TservicesColumnProps }) {
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(`http://127.0.0.1:8000/api/service/${data.id}`);
+			await axios.delete(
+				`https://themountingking.com/backend/api/service/${data.id}`,
+			);
 			toast.success("Content deleted.");
+			router(0);
 		} catch (error) {
 			console.error(error);
 			toast.error("Something went wrong");

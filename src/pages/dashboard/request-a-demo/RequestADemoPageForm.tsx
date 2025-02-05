@@ -80,14 +80,14 @@ export default function RequestADemoPageForm() {
 	});
 
 	useEffect(() => {
-		if (formatedData) {
+		if (requestServices) {
 			form.reset({
-				service_title: formatedData.service_title,
-				service_description: formatedData.service_description,
-				steps: formatedData.steps,
+				service_title: requestServices.service_title,
+				service_description: requestServices.service_description,
+				steps: requestServices.steps,
 			});
 		}
-	}, [formatedData, form.reset]);
+	}, [requestServices, form.reset]);
 
 	const { fields: stepFields, append: appendStep } = useFieldArray({
 		control: form.control,
@@ -114,12 +114,12 @@ export default function RequestADemoPageForm() {
 
 			if (id) {
 				await axios.post(
-					`http://127.0.0.1:8000/api/requestService/${id}`,
+					`https://themountingking.com/backend/api/requestService/${id}`,
 					formattedData,
 				);
 			} else {
 				await axios.post(
-					`http://127.0.0.1:8000/api/requestService`,
+					`https://themountingking.com/backend/api/requestService`,
 					formattedData,
 				);
 			}
@@ -135,7 +135,9 @@ export default function RequestADemoPageForm() {
 	const onDelete = async () => {
 		try {
 			if (id) {
-				await axios.delete(`http://127.0.0.1:8000/api/requestService/${id}`);
+				await axios.delete(
+					`https://themountingking.com/backend/api/requestService/${id}`,
+				);
 				router(`/dashboard/request-a-demo`);
 				router(0);
 				toast.success("Service deleted");

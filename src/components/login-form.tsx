@@ -7,11 +7,12 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginFormSchema, TloginFormData } from "@/schemas";
 import { AtSign, Eye, EyeOff, Lock } from "lucide-react";
+import { loginFormSchema, TloginFormData } from "@/schemas";
 
 export default function LoginForm() {
 	const router = useNavigate();
+
 	const [showPassword, setShowPassword] = useState(false);
 
 	const togglePasswordVisibility = () => {
@@ -28,7 +29,7 @@ export default function LoginForm() {
 
 	const onSubmits = async (data: TloginFormData) => {
 		await axios
-			.post(`http://127.0.0.1:8000/api/login`, data)
+			.post(`https://themountingking.com/backend/api/login`, data)
 			.then((response) => {
 				if (response?.data?.success) {
 					toast.success(response.data.success);

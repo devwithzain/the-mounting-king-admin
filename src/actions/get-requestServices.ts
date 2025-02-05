@@ -1,4 +1,4 @@
-const apiUrl = `http://127.0.0.1:8000/api/requestServices`;
+const apiUrl = `https://themountingking.com/backend/api/requestServices`;
 
 const getRequestServices = async () => {
    const response = await fetch(apiUrl);

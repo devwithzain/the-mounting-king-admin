@@ -4,7 +4,7 @@ import {
 	Command,
 	GalleryVerticalEnd,
 	House,
-	SendToBack,
+	// SendToBack,
 	SquareChartGantt,
 	Cog,
 } from "lucide-react";
@@ -53,10 +53,10 @@ export const sideBarItem = {
 			url: "/dashboard/request-a-demo",
 			icon: BookOpenCheck,
 		},
-		{
-			title: "Orders",
-			url: "/dashboard/orders",
-			icon: SendToBack,
-		},
+		// {
+		// 	title: "Orders",
+		// 	url: "/dashboard/orders",
+		// 	icon: SendToBack,
+		// },
 	],
 };

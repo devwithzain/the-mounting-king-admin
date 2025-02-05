@@ -165,13 +165,21 @@ export default function ProductForm() {
 
 		try {
 			if (initialData) {
-				await axios.post(`http://127.0.0.1:8000/api/product/${id}`, formData, {
-					headers: { "Content-Type": "multipart/form-data" },
-				});
+				await axios.post(
+					`https://themountingking.com/backend/api/product/${id}`,
+					formData,
+					{
+						headers: { "Content-Type": "multipart/form-data" },
+					},
+				);
 			} else {
-				await axios.post(`http://127.0.0.1:8000/api/product`, formData, {
-					headers: { "Content-Type": "multipart/form-data" },
-				});
+				await axios.post(
+					`https://themountingking.com/backend/api/product`,
+					formData,
+					{
+						headers: { "Content-Type": "multipart/form-data" },
+					},
+				);
 			}
 			router(`/dashboard/products`);
 			toast.success(toastMessage);
@@ -183,7 +191,9 @@ export default function ProductForm() {
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(`http://127.0.0.1:8000/api/product/${id}`);
+			await axios.delete(
+				`https://themountingking.com/backend/api/product/${id}`,
+			);
 			router(`/dashboard/products`);
 			router(0);
 			toast.success("Service deleted");

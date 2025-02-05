@@ -1,7 +1,7 @@
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuGroup,
+	// DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { placeholder } from "@/assets";
 import { useNavigate } from "react-router-dom";
-import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
+import { ChevronsUpDown, LogOut } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function NavUser({
@@ -80,12 +80,12 @@ export function NavUser({
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuSeparator />
-						<DropdownMenuGroup>
+						{/* <DropdownMenuGroup>
 							<DropdownMenuItem>
 								<Settings />
 								Account
 							</DropdownMenuItem>
-						</DropdownMenuGroup>
+						</DropdownMenuGroup> */}
 						<DropdownMenuSeparator />
 						<DropdownMenuItem onClick={() => logOut()}>
 							<LogOut />

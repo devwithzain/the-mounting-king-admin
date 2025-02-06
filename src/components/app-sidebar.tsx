@@ -9,8 +9,8 @@ import { TuserProps } from "@/types";
 import { sideBarItem } from "@/constants";
 import { getToken } from "@/lib/get-token";
 import { useEffect, useState } from "react";
-import { NavUser } from "@/components/nav-user";
 import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
 import { getUserData } from "@/actions/get-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 

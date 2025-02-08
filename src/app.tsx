@@ -11,6 +11,7 @@ import ProductForm from "./pages/dashboard/products/ProductForm";
 import ServiceForm from "./pages/dashboard/services/ServiceForm";
 import RequestADemoPage from "./pages/dashboard/request-a-demo/RequestADemoPage";
 import RequestADemoPageForm from "./pages/dashboard/request-a-demo/RequestADemoPageForm";
+import User from "./pages/dashboard/users/User";
 
 export default function App() {
 	return (
@@ -70,6 +71,10 @@ export default function App() {
 					<Route
 						path="request-a-demo/:id"
 						element={<RequestADemoPageForm />}
+					/>
+					<Route
+						path="users"
+						element={<User />}
 					/>
 				</Route>
 				{/* </Route> */}

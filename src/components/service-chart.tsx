@@ -1,6 +1,3 @@
-import * as React from "react";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
-
 import {
 	Card,
 	CardContent,
@@ -14,6 +11,9 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from "@/components/ui/chart";
+import * as React from "react";
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+
 const chartData = [
 	{ date: "2024-04-01", desktop: 222, mobile: 150 },
 	{ date: "2024-04-02", desktop: 97, mobile: 180 },
@@ -123,51 +123,23 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export function ServiceChart() {
-	const [activeChart, setActiveChart] =
-		React.useState<keyof typeof chartConfig>("desktop");
-
-	const total = React.useMemo(
-		() => ({
-			desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
-			mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0),
-		}),
-		[],
-	);
+	const [activeChart] = React.useState<keyof typeof chartConfig>("desktop");
 
 	return (
-		<Card>
+		<Card className="w-full">
 			<CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
 				<div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-					<CardTitle>Line Chart - Interactive</CardTitle>
+					<CardTitle>Bar Chart - Interactive</CardTitle>
 					<CardDescription>
-						Showing total visitors for the last 3 months
+						Showing total revenue for the last 3 months
 					</CardDescription>
-				</div>
-				<div className="flex">
-					{["desktop", "mobile"].map((key) => {
-						const chart = key as keyof typeof chartConfig;
-						return (
-							<button
-								key={chart}
-								data-active={activeChart === chart}
-								className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
-								onClick={() => setActiveChart(chart)}>
-								<span className="text-xs text-muted-foreground">
-									{chartConfig[chart].label}
-								</span>
-								<span className="text-lg font-bold leading-none sm:text-3xl">
-									{total[key as keyof typeof total].toLocaleString()}
-								</span>
-							</button>
-						);
-					})}
 				</div>
 			</CardHeader>
 			<CardContent className="px-2 sm:p-6">
 				<ChartContainer
 					config={chartConfig}
 					className="aspect-auto h-[250px] w-full">
-					<LineChart
+					<BarChart
 						accessibilityLayer
 						data={chartData}
 						margin={{
@@ -204,14 +176,11 @@ export function ServiceChart() {
 								/>
 							}
 						/>
-						<Line
+						<Bar
 							dataKey={activeChart}
-							type="monotone"
-							stroke={`var(--color-${activeChart})`}
-							strokeWidth={2}
-							dot={false}
+							fill={`var(--color-${activeChart})`}
 						/>
-					</LineChart>
+					</BarChart>
 				</ChartContainer>
 			</CardContent>
 		</Card>

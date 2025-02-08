@@ -7,6 +7,7 @@ import {
 	// SendToBack,
 	SquareChartGantt,
 	Cog,
+	User,
 } from "lucide-react";
 
 export const sideBarItem = {
@@ -53,10 +54,10 @@ export const sideBarItem = {
 			url: "/dashboard/request-a-demo",
 			icon: BookOpenCheck,
 		},
-		// {
-		// 	title: "Orders",
-		// 	url: "/dashboard/orders",
-		// 	icon: SendToBack,
-		// },
+		{
+			title: "Users",
+			url: "/dashboard/users",
+			icon: User,
+		},
 	],
 };

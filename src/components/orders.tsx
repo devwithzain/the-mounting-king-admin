@@ -24,7 +24,7 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-export function TotalSales() {
+export function TotalOrders() {
 	const [products, setProducts] = useState<TproductsColumnProps[]>([]);
 	const [chartData, setChartData] = useState<
 		{ month: string; count: number }[]
@@ -66,7 +66,7 @@ export function TotalSales() {
 	return (
 		<Card>
 			<CardHeader>
-				<CardTitle>Total Sales</CardTitle>
+				<CardTitle>Total Orders</CardTitle>
 				<CardDescription>Last 6 Months</CardDescription>
 			</CardHeader>
 			<CardContent>
@@ -103,7 +103,7 @@ export function TotalSales() {
 			</CardContent>
 			<CardFooter className="flex-col items-start gap-2 text-sm">
 				<div className="leading-none text-muted-foreground">
-					Showing total sales for the last 6 months
+					Showing total order for the last 6 months
 				</div>
 			</CardFooter>
 		</Card>

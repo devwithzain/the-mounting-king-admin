@@ -114,12 +114,12 @@ export default function RequestADemoPageForm() {
 
 			if (id) {
 				await axios.post(
-					`https://themountingking.com/backend/api/requestService/${id}`,
+					`http://127.0.0.1:8000/api/requestService/${id}`,
 					formattedData,
 				);
 			} else {
 				await axios.post(
-					`https://themountingking.com/backend/api/requestService`,
+					`http://127.0.0.1:8000/api/requestService`,
 					formattedData,
 				);
 			}
@@ -135,9 +135,7 @@ export default function RequestADemoPageForm() {
 	const onDelete = async () => {
 		try {
 			if (id) {
-				await axios.delete(
-					`https://themountingking.com/backend/api/requestService/${id}`,
-				);
+				await axios.delete(`http://127.0.0.1:8000/api/requestService/${id}`);
 				router(`/dashboard/request-a-demo`);
 				router(0);
 				toast.success("Service deleted");

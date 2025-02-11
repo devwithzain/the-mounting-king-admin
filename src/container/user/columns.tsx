@@ -19,6 +19,10 @@ export const columns: ColumnDef<TuserProps>[] = [
 		},
 	},
 	{
+		accessorKey: "role",
+		header: "Role",
+	},
+	{
 		accessorKey: "created_at",
 		header: "Date",
 	},

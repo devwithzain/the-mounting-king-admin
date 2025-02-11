@@ -28,6 +28,7 @@ export default function ServiceForm() {
 	const [open, setOpen] = useState(false);
 	const [image, setImage] = useState<string | null>(null);
 	const [imageError, setImageError] = useState<string>("");
+	const [previewImage, setPreviewImage] = useState<string | null>(null);
 
 	const [services, setServices] = useState<TservicesColumnProps | null>(null);
 
@@ -37,6 +38,7 @@ export default function ServiceForm() {
 				if (id) {
 					const response = await getService(id);
 					setServices(response.data);
+					setImage(response.data.image);
 				}
 			} catch (err) {
 				console.error("Error fetching services:", err);
@@ -73,7 +75,7 @@ export default function ServiceForm() {
 				image: services.image || "",
 			});
 		}
-	}, [services, form.reset]);
+	}, [services, form, form.reset]);
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setImageError("");
@@ -101,6 +103,7 @@ export default function ServiceForm() {
 			reader.onload = () => {
 				const base64 = reader.result as string;
 				setImage(base64);
+				setPreviewImage(base64);
 			};
 			reader.readAsDataURL(file);
 		}
@@ -134,29 +137,25 @@ export default function ServiceForm() {
 		}
 
 		const formData = new FormData();
+		formData.append("_method", "PUT");
 		formData.append("title", data.title);
 		formData.append("short_description", data.short_description);
 		formData.append("description", data.description);
-		const blob = dataURLtoBlob(image);
-		formData.append("image", blob, "image.png");
+
+		if (image.startsWith("data:")) {
+			const blob = dataURLtoBlob(image);
+			formData.append("image", blob, "image.png");
+		}
 
 		try {
 			if (initialData) {
-				await axios.post(
-					`https://themountingking.com/backend/api/service/${id}`,
-					formData,
-					{
-						headers: { "Content-Type": "multipart/form-data" },
-					},
-				);
+				await axios.post(`http://127.0.0.1:8000/api/service/${id}`, formData, {
+					headers: { "Content-Type": "multipart/form-data" },
+				});
 			} else {
-				await axios.post(
-					`https://themountingking.com/backend/api/service`,
-					formData,
-					{
-						headers: { "Content-Type": "multipart/form-data" },
-					},
-				);
+				await axios.post(`http://127.0.0.1:8000/api/service`, formData, {
+					headers: { "Content-Type": "multipart/form-data" },
+				});
 			}
 			toast.success(toastMessage);
 			router(`/dashboard/services`);
@@ -169,9 +168,7 @@ export default function ServiceForm() {
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(
-				`https://themountingking.com/backend/api/service/${id}`,
-			);
+			await axios.delete(`http://127.0.0.1:8000/api/service/${id}`);
 			router(`/dashboard/services`);
 			router(0);
 			toast.success("Service deleted");
@@ -283,12 +280,20 @@ export default function ServiceForm() {
 							</FormItem>
 						)}
 					/>
-					{image && (
+					{previewImage ? (
 						<img
-							src={image}
+							src={previewImage}
 							alt="Preview"
-							style={{ objectFit: "cover" }}
+							className="w-60 h-60 object-cover"
 						/>
+					) : (
+						image && (
+							<img
+								src={`http://127.0.0.1:8000/storage/${image}`}
+								alt="Preview"
+								className="w-60 h-60 object-cover"
+							/>
+						)
 					)}
 					<Button
 						disabled={isSubmitting}

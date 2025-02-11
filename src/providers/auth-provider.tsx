@@ -8,7 +8,10 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType>({ isAuthenticated: false });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	// Check authentication on every render
+	const [isAuthenticated, setIsAuthenticated] = useState(
+		!!Cookies.get("authToken"),
+	);
 
 	useEffect(() => {
 		const token = Cookies.get("authToken");

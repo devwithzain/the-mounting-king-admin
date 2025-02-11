@@ -9,18 +9,18 @@ export default function User() {
 	const [users, setUsers] = useState<TuserProps[]>([]);
 
 	useEffect(() => {
-		const fetchServices = async () => {
+		const fetchUsers = async () => {
 			try {
 				const response = await getUsers();
-				setUsers(response.data);
+				setUsers(response);
 			} catch (err) {
 				console.error("Error fetching users:", err);
 			}
 		};
-		fetchServices();
+		fetchUsers();
 	}, []);
 
-	const formatedProduct = users.slice(0, 8).map((user) => ({
+	const formatedProduct = (users || []).slice(0, 8).map((user) => ({
 		id: user.id,
 		name: user.name,
 		email: user.email,

@@ -133,9 +133,10 @@ export type TuseAlerteModalProps = {
 };
 
 export type TuserProps = {
-   id: bigint;
+   id: string;
    name: string;
    email: string;
+   image: string;
    role: string;
-   created_at: string;
+   created_at: Date;
 };

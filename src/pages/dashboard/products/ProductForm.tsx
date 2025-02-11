@@ -26,7 +26,7 @@ export default function ProductForm() {
 	const { id } = useParams();
 	const router = useNavigate();
 	const [open, setOpen] = useState(false);
-	const [images, setImages] = useState<string[]>([]);
+	const [image, setImage] = useState<string[]>([]);
 	const [imageError, setImageError] = useState<string>("");
 	const [products, setProducts] = useState<TproductsColumnProps | null>(null);
 
@@ -63,7 +63,7 @@ export default function ProductForm() {
 			price: "",
 			color: "",
 			title: "",
-			images: "",
+			image: "",
 			category: "",
 			description: "",
 			shortDescription: "",
@@ -80,7 +80,7 @@ export default function ProductForm() {
 				description: products.description,
 				category: products.category,
 				shortDescription: products.shortDescription,
-				images: products.images || [],
+				image: products.image || [],
 			});
 		}
 	}, [products, form.reset]);
@@ -103,7 +103,7 @@ export default function ProductForm() {
 			}
 
 			if (!allowedTypes.includes(file.type)) {
-				setImageError("Only jpeg, png, jpg, gif, svg images are allowed");
+				setImageError("Only jpeg, png, jpg, gif, svg image are allowed");
 				return;
 			}
 		}
@@ -112,7 +112,7 @@ export default function ProductForm() {
 			const reader = new FileReader();
 			reader.onload = () => {
 				const base64 = reader.result as string;
-				setImages((prevImages) => [...prevImages, base64]);
+				setImage((prevImage) => [...prevImage, base64]);
 			};
 			reader.readAsDataURL(file);
 		});
@@ -140,7 +140,7 @@ export default function ProductForm() {
 	};
 
 	const onSubmits = async (data: TproductsColumnProps) => {
-		if (images.length === 0) {
+		if (image.length === 0) {
 			setImageError("At least one image is required");
 			return;
 		}
@@ -154,32 +154,20 @@ export default function ProductForm() {
 		formData.append("color", data.color);
 		formData.append("size", data.size);
 
-		images.forEach((image, index) => {
+		image.forEach((image, index) => {
 			const blob = dataURLtoBlob(image);
-			formData.append(`images[${index}]`, blob, `image-${index}.png`);
+			formData.append(`image[${index}]`, blob, `image-${index}.png`);
 		});
-
-		for (const [key, value] of formData.entries()) {
-			console.log(key, value);
-		}
 
 		try {
 			if (initialData) {
-				await axios.post(
-					`https://themountingking.com/backend/api/product/${id}`,
-					formData,
-					{
-						headers: { "Content-Type": "multipart/form-data" },
-					},
-				);
+				await axios.post(`http://127.0.0.1:8000/api/product/${id}`, formData, {
+					headers: { "Content-Type": "multipart/form-data" },
+				});
 			} else {
-				await axios.post(
-					`https://themountingking.com/backend/api/product`,
-					formData,
-					{
-						headers: { "Content-Type": "multipart/form-data" },
-					},
-				);
+				await axios.post(`http://127.0.0.1:8000/api/product`, formData, {
+					headers: { "Content-Type": "multipart/form-data" },
+				});
 			}
 			router(`/dashboard/products`);
 			toast.success(toastMessage);
@@ -191,9 +179,7 @@ export default function ProductForm() {
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(
-				`https://themountingking.com/backend/api/product/${id}`,
-			);
+			await axios.delete(`http://127.0.0.1:8000/api/product/${id}`);
 			router(`/dashboard/products`);
 			router(0);
 			toast.success("Service deleted");
@@ -352,7 +338,7 @@ export default function ProductForm() {
 					</div>
 					<FormField
 						control={form.control}
-						name="images"
+						name="image"
 						render={({ field }) => (
 							<FormItem className="w-full">
 								<FormLabel>Image</FormLabel>
@@ -375,7 +361,7 @@ export default function ProductForm() {
 							</FormItem>
 						)}
 					/>
-					{images.map((image, index) => (
+					{image.map((image, index) => (
 						<img
 							key={index}
 							src={image}

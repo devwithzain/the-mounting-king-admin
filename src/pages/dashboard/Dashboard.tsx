@@ -16,7 +16,7 @@ export default function Dashboard() {
 		const fetchServices = async () => {
 			try {
 				const response = await getUsers();
-				setUsers(response.data);
+				setUsers(response);
 			} catch (err) {
 				console.error("Error fetching users:", err);
 			}

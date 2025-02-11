@@ -25,6 +25,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 		};
 		fetchUserData();
 	});
+
 	return (
 		<Sidebar
 			collapsible="icon"
@@ -36,7 +37,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 				<NavMain items={sideBarItem.navMain} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={user ?? { name: "", email: "" }} />
+				<NavUser
+					user={
+						user ?? {
+							name: "",
+							email: "",
+							id: "",
+							image: "",
+							role: "",
+							created_at: new Date(),
+						}
+					}
+				/>
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>

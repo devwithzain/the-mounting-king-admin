@@ -147,7 +147,7 @@ export const productsColumnSchema = z.object({
    category: z.string(),
    shortDescription: z.string(),
    description: z.string(),
-   images: z.any(z.any()),
+   image: z.any(z.any()),
 });
 
 export const servicesColumnSchema = z.object({
@@ -157,10 +157,17 @@ export const servicesColumnSchema = z.object({
    image: z.any().nullable(),
 });
 
+export const userProfileSchema = z.object({
+   name: z.string(),
+   email: z.string(),
+   image: z.any().nullable(),
+});
+
 export type TloginFormData = z.infer<typeof loginFormSchema>;
 export type TprofileFormData = z.infer<typeof profileFormSchema>;
 export type TserviceFormData = z.infer<typeof servicesFormSchema>;
 export type TregisterFormData = z.infer<typeof registerFormSchema>;
+export type TUserProfileProps = z.infer<typeof userProfileSchema>;
 export type TbillboardFormData = z.infer<typeof billboardFormSchema>;
 export type TproductFormData = z.infer<typeof productHeroFormSchema>;
 export type TservicesColumnProps = z.infer<typeof servicesColumnSchema>;

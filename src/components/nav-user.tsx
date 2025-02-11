@@ -1,7 +1,7 @@
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	// DropdownMenuGroup,
+	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
@@ -16,18 +16,12 @@ import {
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
 import { placeholder } from "@/assets";
-import { useNavigate } from "react-router-dom";
-import { ChevronsUpDown, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TuserProps } from "@/types";
 
-export function NavUser({
-	user,
-}: {
-	user: {
-		name: string;
-		email: string;
-	};
-}) {
+export function NavUser({ user }: { user: TuserProps }) {
 	const router = useNavigate();
 	const logOut = () => {
 		Cookies.remove("authToken");
@@ -80,12 +74,14 @@ export function NavUser({
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuSeparator />
-						{/* <DropdownMenuGroup>
-							<DropdownMenuItem>
-								<Settings />
-								Account
-							</DropdownMenuItem>
-						</DropdownMenuGroup> */}
+						<Link to={`/dashboard/account`}>
+							<DropdownMenuGroup>
+								<DropdownMenuItem>
+									<Settings />
+									Account
+								</DropdownMenuItem>
+							</DropdownMenuGroup>
+						</Link>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem onClick={() => logOut()}>
 							<LogOut />

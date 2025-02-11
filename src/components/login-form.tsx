@@ -29,13 +29,17 @@ export default function LoginForm() {
 
 	const onSubmits = async (data: TloginFormData) => {
 		await axios
-			.post(`https://themountingking.com/backend/api/login`, data)
+			.post(`http://127.0.0.1:8000/api/login`, data)
 			.then((response) => {
 				if (response?.data?.success) {
-					toast.success(response.data.success);
-					const { access_token } = response.data;
-					Cookies.set("authToken", access_token, { expires: 1 });
-					router(0);
+					const { access_token, user } = response.data;
+					if (user.role === "admin") {
+						toast.success(response.data.success);
+						Cookies.set("authToken", access_token, { expires: 1 });
+						router(0);
+					} else {
+						toast.error("You do not have permission to access dashboard.");
+					}
 				}
 			})
 			.catch((err) => {

@@ -25,9 +25,7 @@ export default function CellAction({
 
 	const onDelete = async () => {
 		try {
-			await axios.delete(
-				`https://themountingking.com/backend/api/requestService/${data.id}`,
-			);
+			await axios.delete(`http://127.0.0.1:8000/api/requestService/${data.id}`);
 			toast.success("Content deleted.");
 			router(0);
 		} catch (error) {

@@ -13,6 +13,8 @@ import ProductForm from "./pages/dashboard/products/ProductForm";
 import ServiceForm from "./pages/dashboard/services/ServiceForm";
 import RequestADemoPage from "./pages/dashboard/request-a-demo/RequestADemoPage";
 import RequestADemoPageForm from "./pages/dashboard/request-a-demo/RequestADemoPageForm";
+import EmployeePage from "./pages/dashboard/employees/Employee";
+import EmployeeForm from "./pages/dashboard/employees/EmployeeForm";
 
 export default function App() {
 	return (
@@ -78,6 +80,18 @@ export default function App() {
 						<Route
 							path="account"
 							element={<Account />}
+						/>
+						<Route
+							path="employees"
+							element={<EmployeePage />}
+						/>
+						<Route
+							path="employees/new"
+							element={<EmployeeForm />}
+						/>
+						<Route
+							path="employees/:id"
+							element={<EmployeeForm />}
 						/>
 					</Route>
 				</Route>

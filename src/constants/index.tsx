@@ -4,10 +4,10 @@ import {
 	Command,
 	GalleryVerticalEnd,
 	House,
-	// SendToBack,
 	SquareChartGantt,
 	Cog,
-	User,
+	UsersRound,
+	Contact,
 } from "lucide-react";
 
 export const sideBarItem = {
@@ -57,7 +57,12 @@ export const sideBarItem = {
 		{
 			title: "Users",
 			url: "/dashboard/users",
-			icon: User,
+			icon: UsersRound,
+		},
+		{
+			title: "Employees",
+			url: "/dashboard/employees",
+			icon: Contact,
 		},
 	],
 };

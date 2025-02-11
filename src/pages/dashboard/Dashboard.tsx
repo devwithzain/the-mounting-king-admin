@@ -24,11 +24,12 @@ export default function Dashboard() {
 		fetchServices();
 	}, []);
 
-	const formatedProduct = users.map((user) => ({
+	const formatedProduct = users.slice(0, 5).map((user) => ({
 		id: user.id,
 		name: user.name,
 		email: user.email,
 		role: user.role,
+		image: user.image,
 		created_at: format(user.created_at ?? new Date(), "MMMM do, yyyy"),
 	}));
 	return (

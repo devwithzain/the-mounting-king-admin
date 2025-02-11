@@ -1,4 +1,10 @@
 import {
+	SidebarMenu,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	useSidebar,
+} from "@/components/ui/sidebar";
+import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuGroup,
@@ -7,19 +13,13 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	useSidebar,
-} from "@/components/ui/sidebar";
 import Cookies from "js-cookie";
 import toast from "react-hot-toast";
+import { TuserProps } from "@/types";
 import { placeholder } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { ChevronsUpDown, LogOut, Settings } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TuserProps } from "@/types";
 
 export function NavUser({ user }: { user: TuserProps }) {
 	const router = useNavigate();
@@ -43,7 +43,6 @@ export function NavUser({ user }: { user: TuserProps }) {
 									src={placeholder}
 									alt={user.name}
 								/>
-								<AvatarFallback className="rounded-lg">AD</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-semibold">{user.name}</span>
@@ -64,7 +63,6 @@ export function NavUser({ user }: { user: TuserProps }) {
 										src={placeholder}
 										alt={user.name}
 									/>
-									<AvatarFallback className="rounded-lg">AD</AvatarFallback>
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
 									<span className="truncate font-semibold">{user.name}</span>

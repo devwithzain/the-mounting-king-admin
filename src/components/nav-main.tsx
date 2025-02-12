@@ -34,8 +34,8 @@ export function NavMain({
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel className="text-lg font-medium leading-tight pb-4">
-				Navigation Menu
+			<SidebarGroupLabel className="text-[16px] font-medium leading-tight pb-4 text-black">
+				Navigation
 			</SidebarGroupLabel>
 			<SidebarMenu>
 				{items.map((item) => {

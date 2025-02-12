@@ -8,20 +8,19 @@ import {
 } from "@/components/ui/form";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Trash } from "lucide-react";
+import { TuserProps } from "@/types";
 import { useForm } from "react-hook-form";
 import Heading from "@/components/heading";
+import { getToken } from "@/lib/get-token";
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { getUserData } from "@/actions/get-user";
 import AlertModal from "@/components/alert-modal";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userProfileSchema, TUserProfileProps } from "@/schemas";
-import { getToken } from "@/lib/get-token";
-import { TuserProps } from "@/types";
-import { getUserData } from "@/actions/get-user";
 
 export default function Account() {
 	const token = getToken();
@@ -31,39 +30,34 @@ export default function Account() {
 	const [imageError, setImageError] = useState<string>("");
 	const [user, setUser] = useState<TuserProps | null>(null);
 
-	useEffect(() => {
-		const fetchUserData = async () => {
-			const userData = await getUserData(token);
-			setUser(userData);
-		};
-		fetchUserData();
-	});
-	const formattedUser = user
-		? {
-				name: user.name,
-				email: user.email,
-				image: user.image,
-		  }
-		: null;
-
 	const form = useForm<TUserProfileProps>({
 		resolver: zodResolver(userProfileSchema),
-		defaultValues: formattedUser || {
+		defaultValues: {
 			name: "",
 			email: "",
 			image: "",
 		},
 	});
 
+	const {
+		formState: { isSubmitting },
+		reset,
+	} = form;
+
 	useEffect(() => {
-		if (user) {
-			form.reset({
-				name: user.name,
-				email: user.email,
-				image: user.image || "",
-			});
-		}
-	}, [user, form.reset]);
+		const fetchUserData = async () => {
+			try {
+				if (token) {
+					const userData = await getUserData(token);
+					setUser(userData);
+					reset(userData);
+				}
+			} catch (err) {
+				console.error("Error fetching user data:", err);
+			}
+		};
+		fetchUserData();
+	}, [token, reset]);
 
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setImageError("");
@@ -97,37 +91,34 @@ export default function Account() {
 		reader.readAsDataURL(file);
 	};
 
-	const {
-		formState: { isSubmitting },
-	} = form;
-
-	const initialData = formattedUser;
+	const initialData = user;
 	const toastMessage = initialData && "Profile updated.";
 
 	const onSubmits = async (data: TUserProfileProps) => {
-		// if (data.password !== data.confirmPassword) {
-		// 	toast.error("Passwords do not match");
-		// 	return;
-		// }
-
-		const formData = new FormData();
-		formData.append("name", data.name);
-		formData.append("email", data.email);
-		// if (data.password) formData.append("password", data.password);
-		if (image) {
-			const blob = dataURLtoBlob(image);
-			formData.append("image", blob, "profile-image.png");
-		}
-
 		try {
-			await axios.put(
-				`http://127.0.0.1:8000/api/profile/update/"5"`,
+			const formData = new FormData();
+			Object.keys(data).forEach((key) => {
+				if (key !== "image") {
+					formData.append(key, data[key as keyof TUserProfileProps]);
+				}
+			});
+
+			if (image) {
+				const blob = dataURLtoBlob(image);
+				formData.append("image", blob, "profile-image.png");
+			}
+
+			await axios.post(
+				`http://127.0.0.1:8000/api/profile/update/${user?.id}`,
 				formData,
 				{
-					headers: { "Content-Type": "multipart/form-data" },
+					headers: {
+						"Authorization": `Bearer ${token}`,
+						"Accept": "application/json",
+						"Content-Type": "multipart/form-data",
+					},
 				},
 			);
-			router(0);
 			toast.success(toastMessage);
 		} catch (error) {
 			console.error(error);
@@ -173,15 +164,6 @@ export default function Account() {
 					title="Settings"
 					description="Edit your details!"
 				/>
-				{initialData && (
-					<Button
-						disabled={isSubmitting}
-						variant="destructive"
-						size="sm"
-						onClick={() => setOpen(true)}>
-						<Trash className="h-4 w-4" />
-					</Button>
-				)}
 			</div>
 			<Separator />
 			<Form {...form}>
@@ -221,40 +203,6 @@ export default function Account() {
 							</FormItem>
 						)}
 					/>
-					{/* <FormField
-						control={form.control}
-						name="password"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Password</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="Password"
-										type="password"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					<FormField
-						control={form.control}
-						name="confirmPassword"
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>Confirm Password</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="Confirm Password"
-										type="password"
-										{...field}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/> */}
 					<FormField
 						control={form.control}
 						name="image"
